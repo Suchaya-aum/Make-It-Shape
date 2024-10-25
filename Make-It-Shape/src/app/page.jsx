@@ -12,7 +12,6 @@ export default function Home() {
   const [portion, setPortion] = useState(null); // ปริมาณน้ำต่อครั้ง
   const [message, setMessage] = useState(''); // ข้อความสำหรับแสดงผล
 
-<<<<<<< HEAD
   // เหตุการณ์เมื่อกด submit -> จะคำนวณปริมาณน้ำที่พึงดื่มต่อวัน และพึงดื่มต่อครั้ง
   const handleSubmit = () => {
     const amountOfWater = (weight * 2.2 * 30) / 2;
@@ -22,12 +21,10 @@ export default function Home() {
     } else {
       portions = amountOfWater / 8;
     }
-=======
   // ฟังก์ชันคำนวณปริมาณน้ำในมล.
   const calculateWaterIntake = (weight) => {
     return (weight * 2.2 * 30) / 2; // สูตรคำนวณ: น้ำหนัก (กก.) x 2.2 x 30 / 2
   };
->>>>>>> e140078a690115b9ab44597555cec1cae339fa6b
 
   // ฟังก์ชันสำหรับเชื่อมต่อและส่งข้อมูลไปยัง MQTT
   const publishToMQTT = (waterIntake) => {
