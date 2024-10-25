@@ -45,8 +45,8 @@ export default function Home() {
   return (
     <div className=" mx-auto ">
       <Navbar />
-      <div className="flex justify-center items-center min-h-screen bg-white p-2">
-        <div className="bg-gray-100 p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+      <div className="flex justify-center items-center min-h-screen shadow-lg bg-[url('/water.jpg')] bg-cover bg-center bg-opacity-40">
+        <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
           <h1 className="text-2xl font-bold mb-4">ปริมาณน้ำที่พึงดื่มต่อวัน</h1> {/* หัวเรื่อง */}
           <div className="mb-4">
             {/* กล่องที่รับ input น้ำหนัก */}
