@@ -11,6 +11,7 @@ export default function Home() {
   const [waterIntake, setWaterIntake] = useState(null);
   const [portion, setPortion] = useState(null);
 
+  // เหตุการณ์เมื่อกด submit -> จะคำนวณปริมาณน้ำที่พึงดื่มต่อวัน และพึงดื่มต่อครั้ง
   const handleSubmit = () => {
     const amountOfWater = (weight * 2.2 * 30) / 2;
     let portions;
