@@ -30,8 +30,10 @@ export default function Home() {
     <main>
     <Navbar />
     <div className="container">
+      {/* กล่องที่รับ input น้ำหนัก */}
       <div className="card">
         <h1>ปริมาณน้ำที่พึงดื่มต่อวัน</h1>
+        {/* รับค่าน้ำหนัก */}
         <div className="input-group">
           <label>น้ำหนัก (kg):</label>
           <input
@@ -41,6 +43,7 @@ export default function Home() {
             placeholder="กรอกน้ำหนักของคุณ"
           />
         </div>
+        {/* เลือกโหมด */}
         <div className="mode-group">
           <h2>โหมดที่ต้องการ:</h2>
           <label>
@@ -62,8 +65,10 @@ export default function Home() {
             โหมดคนขยัน (เตือนทุก 2 ชั่วโมง)
           </label>
         </div>
+        {/* ปุ่ม submit */}
         <button className="submit-btn" onClick={handleSubmit}>Submit</button>
       </div>
+      {/* เมื่อกดปุ่ม submit ก็จะขึ้น Popup ปริมาณน้ำที่พึงดื่มต่อวัน และ ปริมาณน้ำที่ควรดื่มต่อครั้ง */}
       {showPopup && (
         <Popup
           waterIntake={waterIntake}
