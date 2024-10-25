@@ -1,67 +1,25 @@
-"use client"
+"use client";
 
+import React from 'react';
 
 export default function Popup({ waterIntake, portion, onClose }) {
-    return (
-        <div className="popup-overlay">
-          <div className="popup">
-            <h2>ผลการคำนวณน้ำที่ควรดื่ม</h2>
-            <p>ปริมาณน้ำที่ควรดื่มทั้งหมดต่อวันคือ: {waterIntake.toFixed(2)} มิลลิลิตร</p>
-            <p>คุณควรดื่มน้ำ {portion.toFixed(2)} มิลลิลิตรต่อครั้ง</p>
-            <button onClick={onClose}>ปิด</button>
-    
-            <style jsx>{`
-              .popup-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                background-color: rgba(0, 0, 0, 0.5);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 9999; /* ให้อยู่เหนือ element อื่น */
-              }
-    
-              .popup {
-                background: #e0bcbc;
-                padding: 2rem;
-                border-radius: 10px;
-                text-align: center;
-                max-width: 400px;
-                width: 100%;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                z-index: 10000; /* ให้ popup อยู่เหนือ overlay */
-              }
-    
-              h2 {
-                margin-bottom: 1rem;
-                color: #333;
-              }
-    
-              p {
-                margin-bottom: 1rem;
-                color: #555;
-              }
-    
-              button {
-                background-color: #bccee0;
-                color: white;
-                padding: 0.75rem 1.5rem;
-                border: none;
-                border-radius: 5px;
-                font-size: 1rem;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-              }
-    
-              button:hover {
-                background-color: #0056b3;
-              }
-            `}</style>
-          </div>
-        </div>
-      );
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full text-center">
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">ผลการคำนวณน้ำที่ควรดื่ม</h2>
+        <p className="text-gray-700">
+          ปริมาณน้ำที่ควรดื่มทั้งหมดต่อวันคือ: <strong>{Math.round(waterIntake)} มิลลิลิตร</strong>
+        </p>
+        <p className="text-gray-700">
+          คุณควรดื่มน้ำ <strong>{Math.round(portion)} มิลลิลิตร</strong> ต่อครั้ง
+        </p>
+        <button
+          onClick={onClose}
+          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+        >
+          ปิด
+        </button>
+      </div>
+    </div>
+  );
 }
-  
