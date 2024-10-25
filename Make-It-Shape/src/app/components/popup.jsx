@@ -15,7 +15,7 @@ export default function Popup({ waterIntake, portion, onClose }) {
         </p>
         <button
           onClick={onClose}
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+          className="mt-4 bg-[#044b65] text-white px-4 py-2 rounded-lg "
         >
           ปิด
         </button>
