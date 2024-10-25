@@ -55,8 +55,10 @@ export default function Home() {
     <main className=" mx-auto">
       <Navbar />
       <div className="flex justify-center items-center min-h-screen bg-white p-2">
+        {/* กล่องที่รับ input น้ำหนัก */}
         <div className="bg-gray-100 p-8 rounded-lg shadow-lg max-w-md w-full text-center">
           <h1 className="text-2xl font-bold mb-4">ปริมาณน้ำที่พึงดื่มต่อวัน</h1> {/* หัวเรื่อง */}
+            {/* รับค่าน้ำหนัก */}
           <div className="mb-4">
             <label className="block mb-2 text-gray-700">น้ำหนัก (kg):</label>
             <input
