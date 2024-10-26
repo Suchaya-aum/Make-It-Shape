@@ -19,7 +19,7 @@ export default function Home() {
 
   // เอาไว้เชื่อมต่อและส่งข้อมูลไปยัง MQTT
   const publishToMQTT = (waterIntake) => {
-    const client = mqtt.connect('wss://broker.hivemq.com:8000/mqtt');
+    const client = mqtt.connect('wss://broker.hivemq.com:8884/mqtt');
     client.on('connect', () => {
       client.publish('phycom_baan', waterIntake.toString(), () => {
         client.end(); // ปิดการเชื่อมต่อเมื่อส่งเสร็จ
