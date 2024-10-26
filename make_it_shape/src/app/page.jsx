@@ -1,6 +1,6 @@
 "use client"; 
 
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 import mqtt from 'mqtt'; // นำเข้า MQTT
 import Popup from './components/popup'; // นำเข้า Popup คอมโพเนนต์
 import Navbar from './components/Navbar'; // นำเข้า Navbar คอมโพเนนต์
@@ -11,6 +11,7 @@ export default function Home() {
   const [waterIntake, setWaterIntake] = useState(null); // ปริมาณน้ำที่ควรดื่ม
   const [portion, setPortion] = useState(null); // ปริมาณน้ำต่อครั้ง
   const [message, setMessage] = useState(''); // ข้อความสำหรับแสดงผล
+  const [reminder, setReminder] = useState('5'); //ระยะเวลาเตือน (นาที)
 
   // ฟังก์ชันคำนวณปริมาณน้ำในมล.
   const calculateWaterIntake = (weight) => {
@@ -30,6 +31,32 @@ export default function Home() {
       console.error('MQTT connection error:', err);
     });
   };
+  // ฟังก์ชันเตือนทุกๆ ตามที่ผู้ใช้กำหนด
+  const startReminder = () => {
+    const intervalInMinutes = parseInt(reminder) || 5; // แปลงจาก string เป็น number
+    const reminderIntervalInMs = intervalInMinutes * 60 * 1000; // แปลงนาทีเป็นมิลลิวินาที
+
+    const reminderTimer = setInterval(() => {
+      if (weight) {
+        alert('อย่าลืมดื่มน้ำตามที่คำนวณไว้!'); // เตือนผู้ใช้ให้ดื่มน้ำ
+      } else {
+        alert('กรุณากรอกน้ำหนักของคุณ!'); // เตือนให้กรอกน้ำหนัก
+      }
+    }, reminderIntervalInMs); // ใช้เวลาที่ผู้ใช้กำหนด
+
+    return () => clearInterval(reminderTimer); // ล้างเวลาเมื่อคอมโพเนนต์ถูกทำลาย
+  };
+
+  // เรียกใช้ startReminder เมื่อคอมโพเนนต์โหลด
+  useEffect(() => {
+    startReminder(); // เรียกฟังก์ชันเตือนเมื่อคอมโพเนนต์โหลด
+
+    // Cleanup function to clear the interval on unmount
+    return () => {
+      clearInterval(startReminder);
+    };
+  }, [reminder]); // เพิ่ม reminder ใน dependencies
+
 
   // ปุ่ม Submit สำหรับคำนวณและส่งข้อมูล
   const handleSubmit = (e) => {
@@ -43,6 +70,7 @@ export default function Home() {
     setPortion(Math.round(portions)); //ขก.คิดเศษ เอาจน.เต็มไปนะ
     setMessage(`ปริมาณน้ำที่ควรดื่มทั้งหมดต่อวันคือ : ${Math.round(intake)} มิลิลิตร\nคุณควรดื่มน้ำ : ${Math.round(portions)} มิลิลิตร ต่อครั้ง`); // ข้อความแสดงผลข่างล่างปุ่ม
     publishToMQTT(8); // ส่งข้อมูลไปยัง MQTT
+    publishToMQTT(reminder); // ส่งข้อมูลไปยัง MQTT
     setShowPopup(true); // แสดง Popup
     console.log("Popup should appear now.");
   };
@@ -54,13 +82,24 @@ export default function Home() {
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
           <h1 className="text-2xl font-bold mb-4">ปริมาณน้ำที่พึงดื่มต่อวัน</h1> {/* หัวเรื่อง */}
           <div className="mb-4">
-            {/* กล่องที่รับ input น้ำหนัก */}
+            {/* input น้ำหนัก */}
             <label className="block mb-2 text-gray-700">น้ำหนัก (kg):</label>
             <input
               type="number"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
               placeholder="กรอกน้ำหนักของคุณ"
+              className="border rounded p-2 w-full"
+            />
+          </div>
+          <div className="mb-4">
+            {/* input สำหรับระยะเวลาเตือน */}
+            <label className="block mb-2 text-gray-700">เตือนทุกๆ (นาที):</label>
+            <input
+              type="number"
+              value={reminder}
+              onChange={(e) => setReminder(e.target.value)}
+              placeholder="กรอกจำนวนนาที"
               className="border rounded p-2 w-full"
             />
           </div>
