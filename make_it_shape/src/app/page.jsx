@@ -19,11 +19,15 @@ export default function Home() {
 
   // เอาไว้เชื่อมต่อและส่งข้อมูลไปยัง MQTT
   const publishToMQTT = (waterIntake) => {
-    const client = mqtt.connect('ws://broker.hivemq.com:8000/mqtt');
+    const client = mqtt.connect('wss://broker.hivemq.com:8000/mqtt');
     client.on('connect', () => {
       client.publish('phycom_baan', waterIntake.toString(), () => {
         client.end(); // ปิดการเชื่อมต่อเมื่อส่งเสร็จ
       });
+    });
+
+    client.on('error', (err) => {
+      console.error('MQTT connection error:', err);
     });
   };
 
@@ -40,6 +44,7 @@ export default function Home() {
     setMessage(`ปริมาณน้ำที่ควรดื่มทั้งหมดต่อวันคือ : ${Math.round(intake)} มิลิลิตร\nคุณควรดื่มน้ำ : ${Math.round(portions)} มิลิลิตร ต่อครั้ง`); // ข้อความแสดงผลข่างล่างปุ่ม
     publishToMQTT(8); // ส่งข้อมูลไปยัง MQTT
     setShowPopup(true); // แสดง Popup
+    console.log("Popup should appear now.");
   };
 
   return (
