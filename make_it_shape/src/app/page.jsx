@@ -68,7 +68,7 @@ export default function Home() {
 
     setWaterIntake(Math.round(intake)); //ขก.คิดเศษ เอาจน.เต็มไปนะ
     setPortion(Math.round(portions)); //ขก.คิดเศษ เอาจน.เต็มไปนะ
-    setMessage(`ปริมาณน้ำที่ควรดื่มทั้งหมดต่อวันคือ : ${Math.round(intake)} มิลิลิตร\nคุณควรดื่มน้ำ : ${Math.round(portions)} มิลิลิตร ต่อครั้ง`); // ข้อความแสดงผลข่างล่างปุ่ม
+    setMessage(`ปริมาณน้ำที่ควรดื่มทั้งหมดต่อวันคือ : ${Math.round(intake)} มิลิลิตร\nคุณควรดื่มน้ำ : ทั้งหมด 8 แก้ว ${Math.round(portions)} มิลิลิตร ต่อแก้ว `); // ข้อความแสดงผลข่างล่างปุ่ม
     publishToMQTT(reminder); // ส่งข้อมูลไปยัง MQTT
     setShowPopup(true); // แสดง Popup
     console.log("Popup should appear now.");
