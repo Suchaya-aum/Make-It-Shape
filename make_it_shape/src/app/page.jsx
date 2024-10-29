@@ -1,6 +1,6 @@
 "use client"; 
 
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect, useRef } from 'react'; 
 import mqtt from 'mqtt'; // นำเข้า MQTT
 import Popup from './components/popup'; // นำเข้า Popup คอมโพเนนต์
 import Navbar from './components/Navbar'; // นำเข้า Navbar คอมโพเนนต์
@@ -12,6 +12,7 @@ export default function Home() {
   const [portion, setPortion] = useState(null); // ปริมาณน้ำต่อครั้ง
   const [message, setMessage] = useState(''); // ข้อความสำหรับแสดงผล
   const [reminder, setReminder] = useState('5'); //ระยะเวลาเตือน (นาที)
+  const timeoutIdRef = useRef(null); // Reference for timeout ID
 
   // ฟังก์ชันคำนวณปริมาณน้ำในมล.
   const calculateWaterIntake = (weight) => {
@@ -31,32 +32,29 @@ export default function Home() {
       console.error('MQTT connection error:', err);
     });
   };
-  // ฟังก์ชันเตือนทุกๆ ตามที่ผู้ใช้กำหนด
+
+  // ฟังก์ชันเตือนครั้งเดียวหลังจากเวลาที่กำหนด
   const startReminder = () => {
     const intervalInMinutes = parseInt(reminder) || 5; // แปลงจาก string เป็น number
     const reminderIntervalInMs = intervalInMinutes * 60 * 1000; // แปลงนาทีเป็นมิลลิวินาที
 
-    const reminderTimer = setInterval(() => {
-      if (weight) {
-        alert('อย่าลืมดื่มน้ำตามที่คำนวณไว้!'); // เตือนผู้ใช้ให้ดื่มน้ำ
-      } else {
-        alert('กรุณากรอกน้ำหนักของคุณ!'); // เตือนให้กรอกน้ำหนัก
-      }
-    }, reminderIntervalInMs); // ใช้เวลาที่ผู้ใช้กำหนด
+    // Clear any existing timeout before setting a new one
+    if (timeoutIdRef.current) {
+      clearTimeout(timeoutIdRef.current);
+    }
 
-    return () => clearInterval(reminderTimer); // ล้างเวลาเมื่อคอมโพเนนต์ถูกทำลาย
+    timeoutIdRef.current = setTimeout(() => {
+      console.log('อย่าลืมดื่มน้ำตามที่คำนวณไว้!'); // หรือแสดงข้อความเตือนใน UI
+      timeoutIdRef.current = null; // Reset the ref after the alert is triggered
+    }, reminderIntervalInMs);
   };
 
-  // เรียกใช้ startReminder เมื่อคอมโพเนนต์โหลด
+  // เรียกใช้ startReminder เมื่อ weight และ reminder มีการเปลี่ยนแปลง
   useEffect(() => {
-    startReminder(); // เรียกฟังก์ชันเตือนเมื่อคอมโพเนนต์โหลด
-
-    // Cleanup function to clear the interval on unmount
-    return () => {
-      clearInterval(startReminder);
-    };
-  }, [reminder]); // เพิ่ม reminder ใน dependencies
-
+    if (weight) {
+      startReminder(); // เริ่มเตือนเมื่อกรอกน้ำหนัก
+    }
+  }, [weight, reminder]); // เพิ่ม weight และ reminder ใน dependencies
 
   // ปุ่ม Submit สำหรับคำนวณและส่งข้อมูล
   const handleSubmit = (e) => {
@@ -111,9 +109,10 @@ export default function Home() {
           {/* แสดงข้อความล่างปุ่ม */}
           {message && (
             <>
-            <p className="mt-4 text-[#044b65]">{message.slice(0, message.indexOf('\n'))}</p>
-            <p className="mt-4 text-[#044b65]">{message.slice(message.indexOf('\n')+1)}</p>
-            </>)}
+              <p className="mt-4 text-[#044b65]">{message.slice(0, message.indexOf('\n'))}</p>
+              <p className="mt-4 text-[#044b65]">{message.slice(message.indexOf('\n')+1)}</p>
+            </>
+          )}
         </div>
          {/* เมื่อกดปุ่ม submit ก็จะขึ้น Popup ปริมาณน้ำที่พึงดื่มต่อวัน และ ปริมาณน้ำที่ควรดื่มต่อครั้ง */}
         {showPopup && (
