@@ -11,7 +11,7 @@ export default function Popup({ waterIntake, portion, onClose }) {
           ปริมาณน้ำที่ควรดื่มทั้งหมดต่อวันคือ: <strong>{Math.round(waterIntake)} มิลลิลิตร</strong>
         </p>
         <p className="text-gray-700">
-          คุณควรดื่มน้ำ <strong>{Math.round(portion)} มิลลิลิตร</strong> ต่อครั้ง
+          คุณควรดื่มน้ำ ทั้งหมด 8 แก้ว <strong>{Math.round(portion)} มิลลิลิตร</strong> ต่อแก้ว
         </p>
         <button
           onClick={onClose}
