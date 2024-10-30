@@ -7,7 +7,7 @@ function Navbar() {
       <div className="container p-5 mx-auto shadow-lg rounded-lg">
         <div className='flex justify-between items-center px-8'>
             <div>
-                <Link href='/calculate'>
+                <Link href='/'>
                   <span className="text-lg font-bold">Home</span>
                 </Link>
             </div>
