@@ -5,11 +5,11 @@
   โปรเจค Microcontroller นี้มีจุดประสงค์เพื่อสร้างอุปกรณ์การแจ้งเตือนสำหรับการดื่มน้ำ เพื่อไม่ให้ทุกคนทำงานหรือกิจกรรมต่าง ๆ จนหลงลืมเวลาในการดื่มน้ำ และส่งเสริมให้ทุกคนดื่มน้ำในปริมาณที่เพียงพอต่อการใช้ชีวิตประจำวันของตัวเอง
 
 ## รายละเอียดของโปรเจค
-  Library สำหรับเขียนโค้ด Arduino : MQTTClient.h และ WiFiS3.h
-  Framework สำหรับเขียนโค้ด Website : Next.js
-  Github Link : [Make-It-Shape.git](https://github.com/Suchaya-aum/Make-It-Shape.git)
-  Github.io Link : [Github.io](https://github.com/Suchaya-aum/Make-It-Shape.git)
-  Website Prototype : [Make-IT-Shape.vercel](https://make-it-shape.vercel.app/)
+  Library สำหรับเขียนโค้ด Arduino : MQTTClient.h และ WiFiS3.h <br>
+  Framework สำหรับเขียนโค้ด Website : Next.js <br>
+  Github Link : [Make-It-Shape.git](https://github.com/Suchaya-aum/Make-It-Shape.git) <br>
+  Github.io Link : [Github.io](https://github.com/Suchaya-aum/Make-It-Shape.git) <br>
+  Website Prototype : [Make-It-Shape.vercel](https://make-it-shape.vercel.app/) <br>
 
 ## รายชื่อสมาชิก
   1. นางสาว กานต์พิชชา คชภูมิ	66070238
