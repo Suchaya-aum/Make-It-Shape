@@ -8,7 +8,7 @@
   Library สำหรับเขียนโค้ด Arduino : MQTTClient.h และ WiFiS3.h <br>
   Framework สำหรับเขียนโค้ด Website : Next.js <br>
   Github Link : [Make-It-Shape.git](https://github.com/Suchaya-aum/Make-It-Shape.git) <br>
-  Github.io Link : [Github.io](https://github.com/Suchaya-aum/Make-It-Shape.git) <br>
+  Github.io Link : [github.io/Make-It-Shape](https://suchaya-aum.github.io/Make-It-Shape/) <br>
   Website Prototype : [Make-It-Shape.vercel](https://make-it-shape.vercel.app/) <br>
 
 ## รายชื่อสมาชิก
