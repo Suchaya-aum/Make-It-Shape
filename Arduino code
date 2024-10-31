@@ -21,6 +21,7 @@ MQTTClient mqtt = MQTTClient(256);
 
 unsigned long lastPublishTime = 0;
 
+// ประกาศตัวแปรสำหรับ 7-segment
 int num_array[10][7] = {  { 1,1,1,1,1,1,0 },    // 0
                           { 0,1,1,0,0,0,0 },    // 1
                           { 1,1,0,1,1,0,1 },    // 2
@@ -30,10 +31,7 @@ int num_array[10][7] = {  { 1,1,1,1,1,1,0 },    // 0
                           { 1,0,1,1,1,1,1 },    // 6
                           { 1,1,1,0,0,0,0 },    // 7
                           { 1,1,1,1,1,1,1 },    // 8
-                          { 1,1,1,0,0,1,1 }
-                       };   // 9
-
-// Define the pins for each segment of the 7-segment display
+                          { 1,1,1,0,0,1,1 }};   // 9
 const int segment_a = 2; 
 const int segment_b = 3; 
 const int segment_c = 4;
@@ -42,10 +40,11 @@ const int segment_e = 6;
 const int segment_f = 7;
 const int segment_g = 8;
 
-const int btn = 13;
-bool is_led_on = false;
-int glasses = 8;
 bool is_input_payload = false;
+bool is_led_on = false;
+const int led = A0;
+const int btn = 13;
+int glasses = 8;
 int time_minute;
 
 void setup() {
@@ -58,7 +57,9 @@ void setup() {
   pinMode(segment_e, OUTPUT);
   pinMode(segment_f, OUTPUT);
   pinMode(segment_g, OUTPUT);
+  pinMode(led, OUTPUT);
   pinMode(btn, INPUT);
+
 
   int status = WL_IDLE_STATUS;
   while (status != WL_CONNECTED) {
@@ -88,15 +89,15 @@ void loop() {
     showTotalGlasses(glasses);
     for (int i=0; i<8; i++){
       delay(time_minute * 60 * 1000);
-      analogWrite(A0, 255);
+      analogWrite(led, 255);
       Serial.println(glasses);
       bool clickBn = true;
-      // ตรวจสอบการกดปุ่มโดยไม่ใช้ delay และตรวจจับการกดเพียงครั้งเดียว
+      // ตรวจสอบการกดปุ่ม
       while (clickBn){
         if (digitalRead(btn) == HIGH) {
         glasses--;
         showTotalGlasses(glasses);
-        analogWrite(A0, 0);
+        analogWrite(led, 0);
         clickBn = false;
         }
       }
@@ -104,6 +105,27 @@ void loop() {
     is_input_payload = false;
   }
   delay(200);
+}
+
+// แสดงจำนวนแก้วบน 7-segments
+void showTotalGlasses(int total) {
+  digitalWrite(segment_a, num_array[digit][0]);
+  digitalWrite(segment_b, num_array[digit][1]);
+  digitalWrite(segment_c, num_array[digit][2]);
+  digitalWrite(segment_d, num_array[digit][3]);
+  digitalWrite(segment_e, num_array[digit][4]);
+  digitalWrite(segment_f, num_array[digit][5]);
+  digitalWrite(segment_g, num_array[digit][6]);
+}
+
+void messageHandler(String &topic, String &payload) {
+  Serial.println("Arduino UNO R4 - received from MQTT:");
+  Serial.println("- topic: " + topic);
+  Serial.println("- payload:");
+  Serial.println(payload);
+
+  time_minute = payload.toInt();
+  is_input_payload = true;
 }
 
 void connectToMQTT() {
@@ -134,48 +156,4 @@ void connectToMQTT() {
 
   Serial.println(SUBSCRIBE_TOPIC);
   Serial.println("Arduino UNO R4 - MQTT broker Connected!");
-}
-
-void sendToMQTT() {
-
-  // int val = millis();
-  int val = analogRead(A0) / 4;
-  String val_str = String(val);
-  char messageBuffer[10];
-  val_str.toCharArray(messageBuffer, 10);
-
-  mqtt.publish(PUBLISH_TOPIC, messageBuffer);
-  Serial.println("Arduino UNO R4 - sent to MQTT:");
-  Serial.print("- topic: ");
-  Serial.println(PUBLISH_TOPIC);
-  Serial.print("- payload:");
-  Serial.println(messageBuffer);
-}
-
-void messageHandler(String &topic, String &payload) {
-  int val = payload.toInt();
-  
-  Serial.println("Arduino UNO R4 - received from MQTT:");
-  Serial.println("- topic: " + topic);
-  Serial.println("- payload:");
-  Serial.println(payload);
-
-  time_minute = payload.toInt();
-  is_input_payload = true;
-}
-
-void showTotalGlasses(int total){
-  displayDigit(total);
-}
-
-// Function to display a specific digit on the 7-segment display
-void displayDigit(int digit) {
-  // Set each segment according to the num_array for the given digit
-  digitalWrite(segment_a, num_array[digit][0]);
-  digitalWrite(segment_b, num_array[digit][1]);
-  digitalWrite(segment_c, num_array[digit][2]);
-  digitalWrite(segment_d, num_array[digit][3]);
-  digitalWrite(segment_e, num_array[digit][4]);
-  digitalWrite(segment_f, num_array[digit][5]);
-  digitalWrite(segment_g, num_array[digit][6]);
 }
