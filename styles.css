@@ -7,7 +7,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url(https://www.mcneesedrillingco.com/Content/Images/water-1.jpg);
+    background-image: url(picture/water.jpg);
     width: 1400px;
     height: 250px;
     margin: 25px auto;
@@ -19,7 +19,7 @@ body {
 .head-text{
     font-size: 100px;
     font-weight: bolder;
-    color: whitesmoke;
+    color: rgb(17, 21, 70);
     letter-spacing: .1em;
     text-shadow: 0 -1px 0 #7AADF0, 0 1px 0 #7AADF0, 0 2px 0 #7AADF0, 0 3px 0 #7AADF0, 0 4px 0 #7AADF0, 0 5px 0 #7AADF0, 0 6px 0 #7AADF0, 0 7px 0 #7AADF0, 0 8px 0 #7AADF0, 0 9px 0 #7AADF0, 0 10px 0 #7AADF0, 0 11px 0 #7AADF0, 0 12px 0 #7AADF0, 0 13px 0 #7AADF0, 0 14px 0 #7AADF0, 0 15px 0 #7AADF0, 0 22px 30px #7AADF0, 2px 2px 2px #7AADF0;
 }
@@ -36,8 +36,7 @@ body {
     padding: 0px 40px;
 }
 
-.banner, .banner-extra {
-    width: 1400px;
+.banner, .banner-extra, .banner-sub1, .banner-sub2 {
     height: auto;
     background-color: #D6F0FC;
     /* display: flex; */
@@ -48,7 +47,21 @@ body {
     box-shadow: 5px 5px 10px gainsboro;
 }
 
+.banner{
+    width: 1400px;
+}
+
+.banner-sub1 {
+    width:800px;
+}
+
+.banner-sub2 {
+    width: 560px;
+}
+
 .banner-extra{
+    width: 1400px;
+    margin-bottom: 50px;
     display: flex;
 }
 
