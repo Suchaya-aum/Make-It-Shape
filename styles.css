@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fdf9fd;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://www.mcneesedrillingco.com/Content/Images/water-1.jpg);
+    width: 1400px;
+    height: 250px;
+    margin: 25px auto;
+    border-radius: 25px;
+    background-size: cover;
+    box-shadow: 5px 5px 10px gainsboro;
+}
+
+.head-text{
+    font-size: 100px;
+    font-weight: bolder;
+    color: whitesmoke;
+    letter-spacing: .1em;
+    text-shadow: 0 -1px 0 #7AADF0, 0 1px 0 #7AADF0, 0 2px 0 #7AADF0, 0 3px 0 #7AADF0, 0 4px 0 #7AADF0, 0 5px 0 #7AADF0, 0 6px 0 #7AADF0, 0 7px 0 #7AADF0, 0 8px 0 #7AADF0, 0 9px 0 #7AADF0, 0 10px 0 #7AADF0, 0 11px 0 #7AADF0, 0 12px 0 #7AADF0, 0 13px 0 #7AADF0, 0 14px 0 #7AADF0, 0 15px 0 #7AADF0, 0 22px 30px #7AADF0, 2px 2px 2px #7AADF0;
+}
+
+.content-section{
+    justify-items: center;
+    margin: 40px 10px;
+    margin-top: 20px;
+}
+
+.content{
+    /* display: flex; */
+    font-size: 18px;
+    padding: 0px 40px;
+}
+
+.banner, .banner-extra {
+    width: 1400px;
+    height: auto;
+    background-color: #D6F0FC;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    margin: 25px auto;
+    border-radius: 25px;
+    box-shadow: 5px 5px 10px gainsboro;
+}
+
+.banner-extra{
+    display: flex;
+}
+
+.scroll{
+    display: flex;
+    justify-content: center;
+    flex: 7;
+    overflow-y: auto;
+    max-height: 400px;
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px; */
+}
+
+.member {
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    align-items: center;    /* Centers items horizontally */
+    justify-content: center; /* Centers items vertically */
+    width: 200px;
+    height: auto;
+    background-color: aliceblue;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    box-shadow: 5px 5px 10px rgb(190, 190, 190);
+}

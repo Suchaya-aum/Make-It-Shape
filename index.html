@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta chaset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>Make It Shape - Physical Computer Project</title>
+    </head>
+    <body>
+        <!-- Head bar -->
+        <div class="title">
+            <h1 class="head-text">MAKE-IT-SHAPE</h1>
+        </div>
+        <!-- Introduction -->
+        <div class="banner" style="display: flex;">
+            <!-- รายละเอียดโครงงาน -->
+            <div class="content-section">
+                <h1 style="padding: 0px 100px;">Abstract</h1>
+                <div class="content">
+                    <p>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspโปรเจค Microcontroller เกี่ยวกับระบบการแจ้งเตือนดื่มน้ำ ประกอบไปด้วย 2 ส่วน คือ<br>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp1. website รับค่าน้ำหนักร่างกายและเวลาในการแจ้งเตือนที่ผู้ใช้กรอกข้อมูล จากนั้นคำนวณปริมาณน้ำที่ผู้ใช้ควรดื่มต่อวันและปริมาณน้ำที่ควรดื่มต่อครั้ง และส่งข้อมูลเวลาในการแจ้งเตือนไปที่ MQTT ที่เป็นตัวกลางรับข้อมูลจาก website และส่งข้อมูลให้ Arduino เพื่อแสดงการแจ้งเตือนบนแผงวงจร<br><br>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp2. Micro Controller ประกอบด้วย 7-segment, LED, Switch
+                    </p>
+                    <div style="padding-left: 15%;">
+                        <li>7-segment แสดงจำนวนแก้วน้ำ 8 แก้ว เป็นจำนวนที่ผู้ใช้ควรดื่มต่อวัน</li>
+                        <li>LED จะเปิดไฟเมื่อครบเวลาในการแจ้งเตือน</li>
+                        <li>Switch สำหรับกดเพื่อปิดไฟ LED และเริ่มจับเวลาการแจ้งเตือนครั้งถัดไป</li>
+                    </div>
+                </div>
+            </div>
+            <!-- project picture -->
+            <img src="picture/image.png" alt="Circuit_picture" style="margin: 5px; margin-right: 50px; width: 40%; height: auto; border-radius: 10%;">
+        </div>
+        <!-- อุปกรณ์ที่ใช้ -->
+        <!-- <div>
+            <div class="banner" style="font-size: 50px; font-weight: bold;">อุปกรณ์ที่ใช้</div>
+        </div> -->
+        <!-- Source Code -->
+        <div class="banner-extra">
+            <div style="display: flex; flex-direction: column; justify-self: center;">
+                <p style="font-size: 50px; font-weight: bolder; margin-left: 20px; margin-bottom: 0px; margin-top: 0; text-align: center;">SOURCE CODE</p>
+                <p style="align-self: center; margin-left: 20px; text-align: center;">Library สำหรับเขียนโค้ด Arduino : MQTTClient.h และ WiFiS3.h<br>Framework สำหรับเขียนโค้ด Website : Next.js</p>
+            </div>
+            <div class="scroll" style="margin: 20px; justify-content: center;">
+                <a href="https://github.com/Suchaya-aum/Make-It-Shape.git">
+                    <img src="picture/srcCode.jpeg" alt="Source_Code_picture" style="width: 97%; padding: 10px;">
+                </a>
+            </div>
+        </div>
+        <!-- Demo Video -->
+        <div class="banner-extra">
+            <div class="content-section">
+                <div style="font-size: 50px; font-weight: bolder; margin: 40px 40px;">Demo Video</div>
+                <!-- Video section -->
+            </div>
+        </div>
+        <!-- Member -->
+        <div class="banner">
+            <div class="content-section" style="padding-top: 5px;">
+                <div style="font-size: 50px; font-weight: bolder; margin: 40px;">Member</div>
+                <!-- Video section -->
+            </div>
+            <div style="display: flex; justify-content: center;">
+                <div class="member">
+                    <img src="picture/member1.jpg" alt="66070325" style="width:100%; border-radius: 10px; padding-bottom: 5px;">
+                    <div>นางสาวกานต์พิชชา คชภูมิ<br>66070238</div>
+                </div>
+                <div class="member">
+                    <img src="picture/member2.jpg" alt="66070325" style="width:100%; border-radius: 10px; padding-bottom: 5px;">
+                    <div>นางสาวพัทธ์ธีรา บุตรธรรม<br>66070298</div>
+                </div>
+                <div class="member">
+                    <img src="picture/member3.jpg" alt="66070325" style="width:100%; border-radius: 10px; padding-bottom: 5px;">
+                    <div>นางสาวสุชญา นาคะรัต<br>66070316</div>
+                </div>
+                <div class="member">
+                    <img src="picture/member4.jpg" alt="66070325" style="width:100%; border-radius: 10px; padding-bottom: 5px;">
+                    <div>นางสาวไอยรัตน์ เหมือนครุฑ<br>66070325</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
