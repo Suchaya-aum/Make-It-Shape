@@ -1,8 +1,8 @@
 #include <WiFiS3.h>
 #include <MQTTClient.h>
 
-const char WIFI_SSID[] = "taiyaki";          // CHANGE TO YOUR WIFI SSID
-const char WIFI_PASSWORD[] = "totheworld";  // CHANGE TO YOUR WIFI PASSWORD
+const char WIFI_SSID[] = "wifi_ssid";          // CHANGE TO YOUR WIFI SSID
+const char WIFI_PASSWORD[] = "wifi_password";  // CHANGE TO YOUR WIFI PASSWORD
 
 const char MQTT_BROKER_ADRRESS[] = "mqtt-dashboard.com";  // CHANGE TO MQTT BROKER'S ADDRESS
 const int MQTT_PORT = 1883;
